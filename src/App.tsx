@@ -1,19 +1,29 @@
-import { StyleSheetManager, ThemeProvider } from "styled-components";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./styles/theme";
 import { GlobalStyle } from "./styles/globalStyle";
-import { theme } from "./styles/theme";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/router";
+import {
+  ThemeProvider as AppThemeProvider,
+  useTheme,
+} from "./context/ThemeContext";
+
+function InnerApp() {
+  const { isDarkMode } = useTheme();
+
+  return (
+    <StyledThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <GlobalStyle />
+      <RouterProvider router={router} />
+    </StyledThemeProvider>
+  );
+}
 
 function App() {
   return (
-    <>
-      <StyleSheetManager target={document.head}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      </StyleSheetManager>
-    </>
+    <AppThemeProvider>
+      <InnerApp />
+    </AppThemeProvider>
   );
 }
 

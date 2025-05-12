@@ -9,19 +9,4 @@ interface Profile extends User {
   introduce?: string;
 }
 
-interface ImageUri {
-  id?: number;
-  uri: string;
-}
-
-interface Portfolio {
-  id: number;
-  userId: number;
-  title: string;
-  description: string;
-  createdAt: string;
-  author: User;
-  imageUris: ImageUri[];
-}
-
-export type { Profile, Portfolio };
+export type { Profile };

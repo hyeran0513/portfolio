@@ -6,3 +6,5 @@
 | styled-components  | `npm install styled-components`  |      |
 | react-helmet-async | `npm install react-helmet-async` |      |
 | react-router-dom   | `npm install react-router-dom`   |      |
+| react-icons        | `npm install react-icons`        |      |
+| framer-motion      | `npm install framer-motion`      |      |
