@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { FaArrowAltCircleRight } from "react-icons/fa";
+
+const colors = ["#E4E9FF", "#E6E3F6", "#F2E3F6"];
 
 interface PortfolioItemProps {
   item: {
@@ -12,124 +14,107 @@ interface PortfolioItemProps {
 }
 
 const PortfolioItem = ({ item, index }: PortfolioItemProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-
   return (
     <>
-      <motion.li
+      <Card
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
         transition={{
           duration: 0.6,
           delay: index * 0.3,
         }}
-        onClick={handleOpenModal}
-        style={{ cursor: "pointer" }}
       >
-        <Card layoutId={`modal-${index}`}>
+        <ThumbWrapper color={colors[index % colors.length]}>
           <Thumb>
             <img src={item?.thumb} alt="" />
           </Thumb>
-          <Info>
-            <InfoTitle>{item?.title}</InfoTitle>
-            <InfoSubTitle>{item?.type}</InfoSubTitle>
-          </Info>
-        </Card>
-      </motion.li>
+        </ThumbWrapper>
 
-      {isOpen && (
-        <Overlay onClick={handleCloseModal}>
-          <motion.div
-            layoutId={`modal-${index}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <ModalContent>
-              <img src={item.thumb} alt="" />
-              <h3>{item.title}</h3>
-              <p>{item.type}</p>
-            </ModalContent>
-          </motion.div>
-        </Overlay>
-      )}
+        <Info>
+          <InfoTitle>{item?.title}</InfoTitle>
+          <InfoSubTitle>{item?.type}</InfoSubTitle>
+
+          <MoreButton>
+            자세히 보기 <FaArrowAltCircleRight />
+          </MoreButton>
+        </Info>
+      </Card>
     </>
   );
 };
 
-const Card = styled(motion.div)`
-  display: block;
-  border-radius: 25px;
-  box-shadow: 0px 0px 30px #0000001a;
-  transition: all ease 0.6s;
+const Card = styled(motion.li)`
+  display: flex;
+  height: 284px;
+  border-radius: 28px;
+  transition: all ease 0.4s;
   overflow: hidden;
-  background-color: ${({ theme }) => theme.card};
   color: ${({ theme }) => theme.text};
+  cursor: pointer;
 
   &:hover {
-    transform: translateY(-45px);
-    box-shadow: 0px 0px 50px #00000033;
+    box-shadow: 0 0 32px 0 rgba(32, 59, 101, 0.15);
   }
 `;
 
+const ThumbWrapper = styled.div<{ color: string }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  width: 60%;
+  background-color: ${({ color }) => color};
+`;
+
 const Thumb = styled.div`
-  height: 372px;
+  height: 140px;
   overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 10px solid #fff;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 8px;
   }
 `;
 
 const Info = styled.div`
-  padding: 20px 28px 18px 25px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  width: 40%;
+  background-color: ${({ theme }) => theme.gray};
 `;
 
 const InfoTitle = styled.div`
   margin-bottom: 10px;
+  line-height: 1.3;
   font-size: 20px;
   font-weight: 500;
+  word-break: keep-all;
 `;
 
 const InfoSubTitle = styled.div`
   font-size: 15px;
-  color: ${({ theme }) => theme.secondary};
+  color: #959595;
 `;
 
-const Overlay = styled.div`
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: grid;
-  place-items: center;
-  z-index: 1000;
-`;
+const MoreButton = styled.button`
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  margin-left: auto;
+  gap: 6px;
+  color: ${({ theme }) => theme.brown};
+  font-weight: bold;
+  cursor: pointer;
 
-const ModalContent = styled.div`
-  background: white;
-  padding: 30px;
-  border-radius: 25px;
-  max-width: 600px;
-  width: 100%;
-  z-index: 1001;
-
-  img {
-    width: 100%;
-    border-radius: 16px;
-    margin-bottom: 20px;
-  }
-
-  h3 {
-    margin: 0 0 10px;
+  svg {
+    font-size: 16px;
   }
 `;
 
