@@ -1,15 +1,30 @@
 import styled from "styled-components";
-import { useTheme } from "../context/ThemeContext";
+import { BiSun, BiMoon } from "react-icons/bi";
+import { menuData } from "../data/menu";
+import { useTheme } from "../hooks/useTheme";
 
-const Header = ({ scrollToTab }: { scrollToTab: (index: number) => void }) => {
-  const { toggleDarkMode } = useTheme();
+interface HeaderProps {
+  scrollToTab: (index: number) => void;
+}
+
+const Header = ({ scrollToTab }: HeaderProps) => {
+  const { toggleDarkMode, isDarkMode } = useTheme();
 
   return (
     <HeaderContainer>
-      <Nav>
-        <button onClick={() => scrollToTab(0)}>포트폴리오</button>
-        <button onClick={toggleDarkMode}>테마 변경</button>
-      </Nav>
+      <HeaderInner>
+        <Logo>Hyeran's Portfolio</Logo>
+
+        <Nav>
+          {menuData.map((item, itemIdx) => (
+            <button onClick={() => scrollToTab(itemIdx)}>{item.koTitle}</button>
+          ))}
+
+          <ThemeToggleButton onClick={toggleDarkMode}>
+            {isDarkMode ? <BiSun /> : <BiMoon />}
+          </ThemeToggleButton>
+        </Nav>
+      </HeaderInner>
     </HeaderContainer>
   );
 };
@@ -22,16 +37,48 @@ const HeaderContainer = styled.header`
   justify-content: center;
   width: 100%;
   height: 72px;
-  border-bottom: 1px solid ${({ theme }) => theme.border};
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   background-color: ${({ theme }) => theme.background};
+  z-index: 2000;
+`;
+
+const HeaderInner = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1240px;
+  width: 100%;
+`;
+
+const Logo = styled.div`
+  font-weight: bold;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Nav = styled.nav`
   display: flex;
   align-items: center;
-  max-width: 1240px;
-  width: 100%;
-  height: 100%;
+  gap: 40px;
+
+  button {
+    border: 0;
+    cursor: pointer;
+    color: ${({ theme }) => theme.text};
+  }
+`;
+
+const ThemeToggleButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.border};
+
+  svg {
+    font-size: 18px;
+  }
 `;
 
 export default Header;
