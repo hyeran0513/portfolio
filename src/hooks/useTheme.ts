@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 export const useTheme = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const context = useContext(ThemeContext);
 
-  const toggleDarkMode = () => {
-    setIsDarkMode((prev) => !prev);
-  };
+  if (!context) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
 
-  return { isDarkMode, toggleDarkMode };
+  return context;
 };

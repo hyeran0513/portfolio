@@ -1,13 +1,17 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useState, type ReactNode } from "react";
 
 interface ThemeContextType {
   isDarkMode: boolean;
   toggleDarkMode: () => void;
 }
 
+interface ThemeProviderProps {
+  children: ReactNode;
+}
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
@@ -21,12 +25,4 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useTheme = (): ThemeContextType => {
-  const context = useContext(ThemeContext);
-
-  if (!context) {
-    throw new Error("ThemeProvider 오류");
-  }
-
-  return context;
-};
+export { ThemeContext };

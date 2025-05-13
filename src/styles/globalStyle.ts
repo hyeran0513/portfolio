@@ -11,4 +11,10 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+
+  button {
+    padding: 0;
+    background: 0;
+    border: 0;
+  }
 `;
