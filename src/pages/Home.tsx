@@ -1,35 +1,108 @@
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import PortfolioList from "../components/PortfolioList";
 import { useOutletContext } from "react-router-dom";
+import AwardSwiper from "../components/AwardSwiper";
+import Introduce from "../components/Introduce";
+import CareerList from "../components/CareerList";
+import SectionTitle from "../components/SectionTitle";
+import type { RefObject } from "react";
+import { backendData, frontendData, toolData } from "../data/skill";
+import SkillCategory from "../components/SkillCategory";
+import { menuData } from "../data/menu";
 
 type OutletContextType = {
-  tabRef: React.MutableRefObject<(HTMLElement | null)[]>;
+  tabRef: RefObject<(HTMLElement | null)[]>;
 };
 
 const Home = () => {
   const { tabRef } = useOutletContext<OutletContextType>();
+  const theme = useTheme();
 
   return (
     <>
-      <section
+      {/* 개요 */}
+      <Section
         ref={(el) => {
           tabRef.current[0] = el;
         }}
       >
-        <Content>
-          <Title>
-            <span>Portfolio</span>포트폴리오
-          </Title>
+        <Introduce />
+      </Section>
 
-          <SubTitle>
-            다양한 프레임워크와 라이브러리를 활용하여
-            <br />
-            다양한 기능과 디자인을 구현한 포트폴리오입니다.
-          </SubTitle>
+      {/* 보유 스킬 */}
+      <Section
+        ref={(el) => {
+          tabRef.current[1] = el;
+        }}
+      >
+        <Content>
+          <SectionTitle
+            egTitle={menuData[1].egTitle}
+            koTitle={menuData[1].koTitle}
+          ></SectionTitle>
+
+          <SkillWrapper>
+            <SkillCategory title="Frontend" data={frontendData} />
+            <SkillCategory title="Tool" data={toolData} />
+            <SkillCategory title="Backend" data={backendData} />
+          </SkillWrapper>
+
+          <SkillDescription>
+            실무 경험과 부트캠프 교육 이수를 완료한, 컴퓨터학과 전공 개발자
+          </SkillDescription>
+        </Content>
+      </Section>
+
+      {/* 경력 및 교육 이수 */}
+      <Section
+        ref={(el) => {
+          tabRef.current[2] = el;
+        }}
+      >
+        <Content>
+          <SectionTitle
+            egTitle={menuData[2].egTitle}
+            koTitle={menuData[2].koTitle}
+          ></SectionTitle>
+
+          <CareerList />
+        </Content>
+      </Section>
+
+      {/* 수상 및 자격증 */}
+      <Section
+        ref={(el) => {
+          tabRef.current[3] = el;
+        }}
+        bgColor={theme.sectionAwardBg}
+      >
+        <Content>
+          <SectionTitle
+            egTitle={menuData[3].egTitle}
+            koTitle={menuData[3].koTitle}
+          ></SectionTitle>
+
+          <AwardSwiper />
+        </Content>
+      </Section>
+
+      {/* 포트폴리오 */}
+      <Section
+        ref={(el) => {
+          tabRef.current[4] = el;
+        }}
+      >
+        <Content>
+          <SectionTitle
+            egTitle={menuData[4].egTitle}
+            koTitle={menuData[4].koTitle}
+          >
+            {menuData[4].description}
+          </SectionTitle>
 
           <PortfolioList />
         </Content>
-      </section>
+      </Section>
     </>
   );
 };
@@ -37,31 +110,27 @@ const Home = () => {
 const Content = styled.div`
   max-width: 1240px;
   margin: 0 auto;
-  padding: 72px 20px;
+  padding: 50px 20px;
 `;
 
-const Title = styled.h3`
-  line-height: 1.45;
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  color: ${({ theme }) => theme.text};
-
-  span {
-    display: block;
-    margin-bottom: 8px;
-    line-height: 1.21;
-    font-size: 24px;
-    font-weight: 500;
-    color: ${({ theme }) => theme.secondary};
-  }
+const Section = styled.section<{ bgColor?: string }>`
+  background-color: ${({ bgColor, theme }) => bgColor || theme.background};
 `;
 
-const SubTitle = styled.p`
-  color: #5d6169;
-  margin: 21px 0 64px;
-  line-height: 1.6;
-  font-size: 20px;
+const SkillWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+`;
+
+const SkillDescription = styled.div`
+  margin-top: 40px;
+  padding: 20px;
+  background-color: ${({ theme }) => theme.yellow};
+  text-align: center;
+  border-radius: 10px;
+  color: ${({ theme }) => theme.brown};
+  font-weight: bold;
 `;
 
 export default Home;

@@ -2,27 +2,45 @@ import { useRef } from "react";
 import Header from "../components/Header";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
+import Footer from "../components/Footer";
 
 const MainLayout = () => {
   const tabRef = useRef<(HTMLElement | null)[]>([]);
 
   const scrollToTab = (index: number) => {
-    tabRef.current[index]?.scrollIntoView({ behavior: "smooth" });
+    const target = tabRef.current[index];
+    if (target) {
+      const offset = 72;
+      const top = target.offsetTop - offset;
+
+      window.scrollTo({
+        top,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
     <Container>
       <Header scrollToTab={scrollToTab} />
 
-      <main>
+      <Main>
         <Outlet context={{ tabRef }} />
-      </main>
+      </Main>
+
+      <Footer />
     </Container>
   );
 };
 
 const Container = styled.div`
-  padding: 72px 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 72px;
+`;
+
+const Main = styled.main`
+  flex: 1;
 `;
 
 export default MainLayout;
