@@ -1,4 +1,3 @@
-import React from "react";
 import SkillList from "./SkillList";
 import styled from "styled-components";
 
@@ -13,7 +12,7 @@ interface SkillCategoryProps {
   data: Skill[];
 }
 
-const SkillCategory: React.FC<SkillCategoryProps> = ({ title, data }) => {
+const SkillCategory = ({ title, data }: SkillCategoryProps) => {
   return (
     <SkillBox>
       <SkillTitle>{title}</SkillTitle>

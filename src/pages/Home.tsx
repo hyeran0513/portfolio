@@ -9,6 +9,7 @@ import type { RefObject } from "react";
 import { backendData, frontendData, toolData } from "../data/skill";
 import SkillCategory from "../components/SkillCategory";
 import { menuData } from "../data/menu";
+import SEO from "../components/SEO";
 
 type OutletContextType = {
   tabRef: RefObject<(HTMLElement | null)[]>;
@@ -20,6 +21,12 @@ const Home = () => {
 
   return (
     <>
+      <SEO
+        title="Hyeran's Portfolio"
+        description="React + TypeScript를 활용한 포트폴리오입니다."
+        keywords="React, TypeScript, Portfolio, 프론트엔드 포트폴리오"
+      />
+
       {/* 개요 */}
       <Section
         ref={(el) => {
