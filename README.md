@@ -15,6 +15,12 @@
 
 ---
 
+### 📍 배포 링크
+
+https://hyeranportfolio.vercel.app/
+
+---
+
 ### 🎬 미리보기
 
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/c0c2f5ec-1ad0-4d44-908c-b71e7fb27cc9" />
