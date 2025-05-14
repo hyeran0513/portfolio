@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BiSun, BiMoon } from "react-icons/bi";
 import { menuData } from "../data/menu";
-import { useTheme } from "../hooks/useTheme";
+import useTheme from "../hooks/useTheme";
 
 interface HeaderProps {
   scrollToTab: (index: number) => void;
@@ -39,7 +39,7 @@ const HeaderContainer = styled.header`
   height: 72px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   background-color: ${({ theme }) => theme.background};
-  z-index: 2000;
+  z-index: 100;
 `;
 
 const HeaderInner = styled.div`

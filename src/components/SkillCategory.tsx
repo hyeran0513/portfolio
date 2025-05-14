@@ -8,14 +8,15 @@ interface Skill {
 }
 
 interface SkillCategoryProps {
-  title: string;
+  title?: string;
   data: Skill[];
 }
 
 const SkillCategory = ({ title, data }: SkillCategoryProps) => {
   return (
     <SkillBox>
-      <SkillTitle>{title}</SkillTitle>
+      {title && <SkillTitle>{title}</SkillTitle>}
+
       <SkillList data={data} />
     </SkillBox>
   );

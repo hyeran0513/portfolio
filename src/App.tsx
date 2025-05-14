@@ -4,7 +4,7 @@ import { GlobalStyle } from "./styles/globalStyle";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/router";
 import { ThemeProvider as AppThemeProvider } from "./context/ThemeContext";
-import { useTheme } from "./hooks/useTheme";
+import useTheme from "./hooks/useTheme";
 
 function InnerApp() {
   const { isDarkMode } = useTheme();
