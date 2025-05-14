@@ -12,6 +12,9 @@ export const lightTheme = {
   yellow: "#fffaf0",
   gray: "#f3f3f3",
   sectionAwardBg: "#F2F7FD",
+  modal: "#fff",
+  tabBg: "#f3f7fa",
+  tabText: "#7b8083",
 };
 
 export const darkTheme = {
@@ -28,4 +31,7 @@ export const darkTheme = {
   yellow: "#121212",
   gray: "#121212",
   sectionAwardBg: "#121212",
+  modal: "#121212",
+  tabBg: "#282828",
+  tabText: "#ffff",
 };

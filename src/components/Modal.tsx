@@ -72,7 +72,7 @@ const Overlay = styled.div`
 `;
 
 const ModalBox = styled.div`
-  background: white;
+  background: ${({ theme }) => theme.modal};
   border-radius: 12px;
   min-width: 300px;
   max-width: 700px;
@@ -117,6 +117,7 @@ const CloseButton = styled.button`
   svg {
     font-size: 24px;
     cursor: pointer;
+    color: ${({ theme }) => theme.text};
   }
 `;
 

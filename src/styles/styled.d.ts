@@ -15,5 +15,8 @@ declare module "styled-components" {
     yellow: string;
     gray: string;
     sectionAwardBg: string;
+    modal: string;
+    tabBg: string;
+    tabText: string;
   }
 }

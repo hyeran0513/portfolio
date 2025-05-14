@@ -179,7 +179,7 @@ const Thumb = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    object-position: top;
   }
 `;
 
@@ -240,6 +240,7 @@ const ListTitle = styled.div`
   padding: 20px 0;
   font-weight: bold;
   border-bottom: 1px solid ${({ theme }) => theme.border};
+  color: ${({ theme }) => theme.text};
 `;
 
 const List = styled.ul`
@@ -252,6 +253,7 @@ const ListItem = styled.li`
   line-height: 1.3;
   word-break: keep-all;
   white-space: pre-line;
+  color: ${({ theme }) => theme.text};
 `;
 
 const ListLink = styled(Link)``;
@@ -266,8 +268,8 @@ const Tab = styled.div`
 const TabItem = styled.div`
   padding: 8px 10px;
   font-size: 14px;
-  color: #7b8083;
-  background-color: #f3f7fa;
+  color: ${({ theme }) => theme.tabText};
+  background-color: ${({ theme }) => theme.tabBg};
   border-radius: 4px;
 `;
 

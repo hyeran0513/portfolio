@@ -50,6 +50,7 @@ export const portfolioData = [
       "Framer Motion을 활용한 페이지 전환 애니메이션 및 인터렉션 구현",
       "Swiper를 활용한 프로젝트 슬라이드 UI 및 autoplay 기능 적용",
       "Styled-Components를 이용한 CSS-in-JS 방식 적용",
+      "다크 모드/라이트 모드 전환",
     ],
     contribution: 100,
     role: [
@@ -57,7 +58,7 @@ export const portfolioData = [
       "섹션별 구성과 인터랙션 플로우 기획 및 구현",
       "프로젝트 정보 구조 설계 및 사용자 친화적인 UI 구성",
     ],
-    preview: ["이후 추가"],
+    preview: ["https://hyeranportfolio.vercel.app/"],
     insights: `React와 TypeScript 기반 프로젝트를 기획하고 완성하면서 컴포넌트 단위 개발 방식, props 및 상태 관리, 애니메이션 처리에 대한 이해를 높일 수 있었습니다.\nFramer Motion의 keyframe 애니메이션을 직접 활용해보며 동적인 UI 구현 경험을 쌓았고, TypeScript를 통해 컴포넌트 간의 명확한 타입 정의도 실현해볼 수 있는 경험이었습니다.`,
   },
   {
